@@ -1,13 +1,13 @@
 import ListItem from "./ListItem";
 
-const ListView = () => {
+const ListView = ({items}) => {
+    console.log("items = ", items)
     return (
         <>
             <h4>List view</h4>
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
+            {items.map(item => {
+                return <ListItem item={item} key={item._id}/>;
+            })}
         </>
     )
 };

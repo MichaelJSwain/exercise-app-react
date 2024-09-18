@@ -1,6 +1,6 @@
-const ListItem = () => {
+const ListItem = ({item}) => {
     return (
-        <h6>List item</h6>
+        <h6>{item.name}</h6>
     )
 };
 
