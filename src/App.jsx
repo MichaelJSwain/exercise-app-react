@@ -3,12 +3,17 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import WorkoutListView from './pages/WorkoutListView'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import WorkoutDetailView from './pages/WorkDetailView'
 
 function App() {
   return (
-    <>
-      <WorkoutListView />
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<WorkoutListView />}></Route>
+        <Route path="/workout/:id" element={<WorkoutDetailView />}></Route>
+      </Routes>
+    </BrowserRouter>
   )
 }
 
