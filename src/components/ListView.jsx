@@ -1,7 +1,6 @@
 import ListItem from "./ListItem";
 
 const ListView = ({items}) => {
-    console.log("items = ", items)
     return (
         <>
             <h4>List view</h4>
