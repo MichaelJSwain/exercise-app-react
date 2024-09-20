@@ -1,18 +1,18 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import WorkoutListView from './pages/WorkoutListView'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import WorkoutDetailView from './pages/WorkDetailView'
+import Header from './components/Header/Header';
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<WorkoutListView />}></Route>
-        <Route path="/workout/:id" element={<WorkoutDetailView />}></Route>
-      </Routes>
+      <Header>
+        <Routes>
+          <Route path="/workouts" element={<WorkoutListView />}></Route>
+          <Route path="/workouts/:id" element={<WorkoutDetailView />}></Route>
+        </Routes>
+      </Header>
     </BrowserRouter>
   )
 }

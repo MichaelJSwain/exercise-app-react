@@ -1,0 +1,13 @@
+#navbarNav {
+    justify-content: end;
+}
+
+.navbar {
+    padding: 20px 30px !important;
+}
+
+.navbar-link {
+    margin: 0 5px;
+    color: #212529;
+    text-decoration: none;
+}
