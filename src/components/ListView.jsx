@@ -4,9 +4,11 @@ const ListView = ({items}) => {
     return (
         <>
             <h4>List view</h4>
-            {items.map(item => {
-                return <ListItem item={item} key={item._id}/>;
-            })}
+            <div style={{display: "flex", flexWrap: "wrap", justifyContent: "space-between"}}>
+                {items.map(item => {
+                    return <ListItem item={item} key={item._id}/>;
+                })}
+            </div>
         </>
     )
 };
