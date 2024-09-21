@@ -8,10 +8,10 @@ function App() {
   return (
     <BrowserRouter>
       <Header>
-        <Routes>
-          <Route path="/workouts" element={<WorkoutListView />}></Route>
-          <Route path="/workouts/:id" element={<WorkoutDetailView />}></Route>
-        </Routes>
+      <Routes>
+        <Route path="/workouts" element={<WorkoutListView />}></Route>
+        <Route path="/workouts/:id" element={<WorkoutDetailView />}></Route>
+      </Routes>
       </Header>
     </BrowserRouter>
   )
