@@ -1,0 +1,11 @@
+.GoalLabel-container {
+    background: grey;
+    color: #fff;
+    padding: 5px 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.GoalLabel-container:not(:last-child) {
+    margin-right: 10px;
+}

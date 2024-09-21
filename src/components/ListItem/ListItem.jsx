@@ -14,14 +14,15 @@ const ListItem = ({item}) => {
          {/* <Link className="listItem" to={`/workouts/${item._id}`} > */}
             <div className="listItem-content">
                 <div className="listItem-image-container">
-                    <img className="list-item-image" src={item.image} />
+                    <img className="list-item-image" src={item.image ? item.image : "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png"} />
                 </div>
                 <div className="listItem-text-container">
                     <h5 className="subtitle">
                         {item.name}
                     </h5>
                     <div className="listItem-info">
-                        {item.duration} - {item.difficulty} - {item.equipment} - {item.format}
+                        {item.image ? `${item.duration} - ${item.difficulty} - ${item.equipment} - ${item.format}` : `${item.timer} sec`}
+                        
                     </div>
                 </div>
             </div>

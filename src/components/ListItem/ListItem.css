@@ -19,7 +19,7 @@
     width: 50px;
 }
 @media only screen and (min-width: 768px) {
-    .listItem {
+    .listView-container .listItem {
         width: 49%;
     }
 }
