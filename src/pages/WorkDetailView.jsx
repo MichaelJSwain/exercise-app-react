@@ -8,6 +8,8 @@ import ListItem from "../components/ListItem/ListItem";
 import HighlightList from "../components/Highlights/List/HighlightList";
 import PageHeader from "../components/PageHeader/PageHeader";
 import FavouriteIcon from "../components/FavouriteIcon/FavouriteIcon";
+import DetailViewHeader from "../components/DetailViewHeader/DetailViewHeader";
+import PrimaryButton from "../components/Buttons/PrimaryButton/PrimaryButton";
 
 const WorkoutDetailView = () => {
     const [workout, setWorkout] = useState(null);
@@ -18,6 +20,10 @@ const WorkoutDetailView = () => {
         setWorkout(location.state.workout);
         setIsLoading(false);
     }, []);
+
+    const handleButtonClick = () => {
+        console.log("Button clickedddd!");
+    }
 
     return (
         <DetailViewLayout>
@@ -30,8 +36,8 @@ const WorkoutDetailView = () => {
                 {workout && (
                     <div style={{padding: "20px"}}>
                         <HighlightList duration={workout.duration} level={workout.difficulty} calories="23" />
-                        <PageHeader title={workout.name} description={workout.description}/>
-                        <FavouriteIcon id={workout._id}/>
+                        <DetailViewHeader title={workout.name} description={workout.description} workoutId={workout._id}/>
+                        {/* <FavouriteIcon id={workout._id}/> */}
                         <div style={{display: "flex", flexWrap: "wrap"}}>
                             {workout.goals.map(goal => {
                                 return <GoalLabel key={goal} text={goal}/>
@@ -45,6 +51,7 @@ const WorkoutDetailView = () => {
                                 )
                             })}
                         </div>
+                        <PrimaryButton text="Begin" clickFunc={handleButtonClick} />
                     </div>
                 )
                 }

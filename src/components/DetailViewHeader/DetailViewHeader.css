@@ -1,0 +1,11 @@
+.DetailViewHeader {
+    text-align: left;
+}
+.DetailViewHeader-title-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.DetailViewHeader-title-container h1 {
+    max-width: 80%;
+}
