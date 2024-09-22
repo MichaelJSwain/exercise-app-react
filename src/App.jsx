@@ -3,6 +3,7 @@ import WorkoutListView from './pages/WorkoutListView'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import WorkoutDetailView from './pages/WorkDetailView'
 import Header from './components/Header/Header';
+import WorkoutActiveView from './pages/WorkoutActiveView';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Routes>
         <Route path="/workouts" element={<WorkoutListView />}></Route>
         <Route path="/workouts/:id" element={<WorkoutDetailView />}></Route>
+        <Route path="/workouts/:id/active" element={<WorkoutActiveView />}></Route>
       </Routes>
       </Header>
     </BrowserRouter>

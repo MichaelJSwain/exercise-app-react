@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import LoadingView from "../components/LoadingView";
 import DetailViewLayout from "../components/DetailViewLayout/DetailViewLayout";
 import GoalLabel from "../components/GoalLabel/GoalLabel";
@@ -15,6 +15,7 @@ const WorkoutDetailView = () => {
     const [workout, setWorkout] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     let location = useLocation();
+    const navigate = useNavigate();
 
     useEffect(() => {
         setWorkout(location.state.workout);
@@ -23,6 +24,7 @@ const WorkoutDetailView = () => {
 
     const handleButtonClick = () => {
         console.log("Button clickedddd!");
+        navigate(`/workouts/${workout._id}/active`, {state: {workout}});
     }
 
     return (
@@ -37,7 +39,6 @@ const WorkoutDetailView = () => {
                     <div style={{padding: "20px"}}>
                         <HighlightList duration={workout.duration} level={workout.difficulty} calories="23" />
                         <DetailViewHeader title={workout.name} description={workout.description} workoutId={workout._id}/>
-                        {/* <FavouriteIcon id={workout._id}/> */}
                         <div style={{display: "flex", flexWrap: "wrap"}}>
                             {workout.goals.map(goal => {
                                 return <GoalLabel key={goal} text={goal}/>
