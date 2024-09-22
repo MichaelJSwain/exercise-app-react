@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import LoadingView from "../components/LoadingView";
 import DetailViewLayout from "../components/DetailViewLayout/DetailViewLayout";
-import PageTitle from "../components/PageTitle/PageTitle";
 import GoalLabel from "../components/GoalLabel/GoalLabel";
 import DetailViewLayoutItem from "../components/DetailViewLayoutItem/DetailViewLayoutItem";
 import ListItem from "../components/ListItem/ListItem";
+import HighlightList from "../components/HighlightList";
+import PageHeader from "../components/PageHeader/PageHeader";
 
 const WorkoutDetailView = () => {
     const [workout, setWorkout] = useState(null);
@@ -27,9 +28,8 @@ const WorkoutDetailView = () => {
             <DetailViewLayoutItem>
                 {workout && (
                     <div style={{padding: "20px"}}>
-                        <PageTitle title={workout.name} />
-                        <p>{workout.description}</p>
-
+                        <HighlightList duration={workout.duration} level={workout.difficulty} calories="23" />
+                        <PageHeader title={workout.name} description={workout.description}/>
                         <div style={{display: "flex", flexWrap: "wrap"}}>
                             {workout.goals.map(goal => {
                                 return <GoalLabel key={goal} text={goal}/>
