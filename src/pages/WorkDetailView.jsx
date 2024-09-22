@@ -7,6 +7,7 @@ import DetailViewLayoutItem from "../components/DetailViewLayoutItem/DetailViewL
 import ListItem from "../components/ListItem/ListItem";
 import HighlightList from "../components/Highlights/List/HighlightList";
 import PageHeader from "../components/PageHeader/PageHeader";
+import FavouriteIcon from "../components/FavouriteIcon/FavouriteIcon";
 
 const WorkoutDetailView = () => {
     const [workout, setWorkout] = useState(null);
@@ -30,6 +31,7 @@ const WorkoutDetailView = () => {
                     <div style={{padding: "20px"}}>
                         <HighlightList duration={workout.duration} level={workout.difficulty} calories="23" />
                         <PageHeader title={workout.name} description={workout.description}/>
+                        <FavouriteIcon id={workout._id}/>
                         <div style={{display: "flex", flexWrap: "wrap"}}>
                             {workout.goals.map(goal => {
                                 return <GoalLabel key={goal} text={goal}/>
