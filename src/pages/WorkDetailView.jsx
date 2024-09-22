@@ -5,7 +5,7 @@ import DetailViewLayout from "../components/DetailViewLayout/DetailViewLayout";
 import GoalLabel from "../components/GoalLabel/GoalLabel";
 import DetailViewLayoutItem from "../components/DetailViewLayoutItem/DetailViewLayoutItem";
 import ListItem from "../components/ListItem/ListItem";
-import HighlightList from "../components/HighlightList";
+import HighlightList from "../components/Highlights/List/HighlightList";
 import PageHeader from "../components/PageHeader/PageHeader";
 
 const WorkoutDetailView = () => {

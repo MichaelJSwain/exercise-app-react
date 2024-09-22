@@ -1,0 +1,18 @@
+.highlightItem {
+    width: fit-content;
+}
+.highlightItem-img-container {
+    margin-bottom: 5px;
+}
+.highlightItem-img {
+    height: 30px; 
+    width: 30px;
+}
+.highlightItem-text {
+    margin: 0px;
+    font-weight: bold;
+}
+.highlightItem-label {
+    margin: 0px;
+    font-size: 12px;
+}

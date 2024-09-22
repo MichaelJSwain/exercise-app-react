@@ -1,0 +1,7 @@
+.HighlightList {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    margin-bottom: 20px;
+    border-bottom: 0.5px solid grey;
+}
