@@ -3,23 +3,24 @@ import { useLocation, useNavigate } from "react-router-dom";
 import DetailViewLayout from "../components/DetailViewLayout/DetailViewLayout";
 import DetailViewLayoutItem from "../components/DetailViewLayoutItem/DetailViewLayoutItem";
 import WorkoutCompletedView from "./WorkoutCompletedView";
+import Timer from "../components/Timer";
 
 const WorkoutActiveView = () => {
     const [exercises, setExercises] = useState([]);
     const [index, setIndex] = useState(0);
     const [showingInstructions, setShowingInstructions] = useState(false);
     const [isCompleted, setIsCompleted] = useState(false);
+    
     const location = useLocation();
     const navigate = useNavigate();
 
     useEffect(() => {
         console.log("location = ", location);
-        setExercises(location.state.workout.trainingSet)
+        setExercises(location.state.workout.trainingSet);
     }, []);
 
     const incrementExercise = () => {
         if (index === (exercises.length - 1)) {
-            console.log("workout completed!!");
             setIsCompleted(true);
         } else {
             setIndex(currVal => currVal + 1)
@@ -55,7 +56,7 @@ const WorkoutActiveView = () => {
                                         return <li>{instruction}</li>
                                     })}
                                 </ul>
-                            ): <h2>{exercises[index].timer} sec</h2>}
+                            ): <Timer key={exercises[index]._id} duration={exercises[index].timer} handleTimerComplete={incrementExercise}/>}
                             
                             <button onClick={incrementExercise}>Next</button>
                             {exercises[index].instructions.length ? <button onClick={toggleInstructions}>Instructions</button> : null}
