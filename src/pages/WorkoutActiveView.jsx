@@ -10,7 +10,7 @@ const WorkoutActiveView = () => {
     const [index, setIndex] = useState(0);
     const [showingInstructions, setShowingInstructions] = useState(false);
     const [isCompleted, setIsCompleted] = useState(false);
-    
+
     const location = useLocation();
     const navigate = useNavigate();
 
