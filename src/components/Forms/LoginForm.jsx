@@ -1,11 +1,14 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import axios from "axios";
+import { AuthContext } from "../Context/AuthContext";
 
 const LoginForm = () => {
     const [formData, setFormData] = useState({
         username: "",
         password: ""
     });
+
+    const {login} = useContext(AuthContext);
 
     const handleUpdate = (e) => {
         const targetField = e.target.name;
@@ -21,13 +24,14 @@ const LoginForm = () => {
         console.log("attempting to log user in...");
 
         if (!!formData.username && !!formData.password) {
-            axios.post("http://localhost:8080/exerciseApp/api/user/login", formData)
-            .then(response => {
-                console.log(response);
-            })
-            .catch(e => {
-                console.log("error attempting to login = ", e);
-            })
+            login(formData.username, formData.password);
+            // axios.post("http://localhost:8080/exerciseApp/api/user/login", formData)
+            // .then(response => {
+            //     console.log(response);
+            // })
+            // .catch(e => {
+            //     console.log("error attempting to login = ", e);
+            // })
         } else {
             console.log("please enter a valid email or password");
         }

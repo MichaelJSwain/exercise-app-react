@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
 import "./Navbar.css";
+import { AuthContext } from "../Context/AuthContext";
+import { useContext } from "react";
 
 const Navbar = () => {
+    const {user, logout} = useContext(AuthContext);
+
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container-fluid">
@@ -17,12 +21,24 @@ const Navbar = () => {
                 <li className="nav-item">
                     <Link className="navbar-link" aria-current="page" to="/workouts">Progress</Link>
                 </li>
-                <li className="nav-item">
-                <Link className="navbar-link" aria-current="page" to="/account/login">Login</Link>
-                </li>
-                <li className="nav-item">
-                <Link className="navbar-link" aria-current="page" to="/account/register">Register</Link>
-                </li>
+                {user ? (
+                    <>
+                        <li className="nav-item">
+                            <Link className="navbar-link" aria-current="page" to="/account/login">Account</Link>
+                        </li>
+                        <li className="nav-item" onClick={logout}>
+                            Logout
+                        </li>
+                    </>
+                ) : <>
+                        <li className="nav-item">
+                            <Link className="navbar-link" aria-current="page" to="/account/login">Login</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="navbar-link" aria-current="page" to="/account/register">Register</Link>
+                        </li>
+                    </>
+            }
                 </ul>
             </div>
             </div>
