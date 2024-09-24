@@ -5,6 +5,7 @@ import DetailViewLayoutItem from "../components/DetailViewLayoutItem/DetailViewL
 import WorkoutCompletedView from "./WorkoutCompletedView";
 import Timer from "../components/Timer";
 import Instructions from "../components/Instructions/Instructions";
+import PrimaryButton from "../components/Buttons/PrimaryButton/PrimaryButton";
 
 const WorkoutActiveView = () => {
     const [exercises, setExercises] = useState([]);
@@ -49,15 +50,18 @@ const WorkoutActiveView = () => {
                         </div>
                     </DetailViewLayoutItem>
                     <DetailViewLayoutItem>
-                        <h4>{exercises[index].name}</h4>
-                        <div>
-                            <Timer key={exercises[index]._id} duration={exercises[index].timer} handleTimerComplete={incrementExercise}/>
-                            {showingInstructions ? (
-                                <Instructions instructions={exercises[index].instructions} />
-                            ): null}
-                            <button onClick={incrementExercise}>Next</button>
-                            {exercises[index].instructions.length ? <button onClick={toggleInstructions}>Instructions</button> : null}
-                            
+                        <div style={{padding: "20px"}}>
+                            <h4>{exercises[index].name}</h4>
+                            <div>
+                                <Timer key={exercises[index]._id} duration={exercises[index].timer} handleTimerComplete={incrementExercise}/>
+                                {showingInstructions ? (
+                                    <Instructions instructions={exercises[index].instructions} />
+                                ): null}
+                                <div style={{display: "flex", justifyContent: "space-between"}}>
+                                    {exercises[index].instructions.length ? <button onClick={toggleInstructions}>Instructions</button> : null}
+                                    <button onClick={incrementExercise}>Next</button>
+                                </div>
+                            </div>
                         </div>
                     </DetailViewLayoutItem>
                 </DetailViewLayout>
