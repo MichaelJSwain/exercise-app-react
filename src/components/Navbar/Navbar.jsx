@@ -18,7 +18,10 @@ const Navbar = () => {
                     <Link className="navbar-link" aria-current="page" to="/workouts">Progress</Link>
                 </li>
                 <li className="nav-item">
-                <Link className="navbar-link" aria-current="page" to="/workouts">Account</Link>
+                <Link className="navbar-link" aria-current="page" to="/account/login">Login</Link>
+                </li>
+                <li className="nav-item">
+                <Link className="navbar-link" aria-current="page" to="/account/register">Register</Link>
                 </li>
                 </ul>
             </div>
