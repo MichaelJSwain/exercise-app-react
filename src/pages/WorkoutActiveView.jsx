@@ -4,6 +4,7 @@ import DetailViewLayout from "../components/DetailViewLayout/DetailViewLayout";
 import DetailViewLayoutItem from "../components/DetailViewLayoutItem/DetailViewLayoutItem";
 import WorkoutCompletedView from "./WorkoutCompletedView";
 import Timer from "../components/Timer";
+import Instructions from "../components/Instructions/Instructions";
 
 const WorkoutActiveView = () => {
     const [exercises, setExercises] = useState([]);
@@ -52,11 +53,7 @@ const WorkoutActiveView = () => {
                         <div>
                             <Timer key={exercises[index]._id} duration={exercises[index].timer} handleTimerComplete={incrementExercise}/>
                             {showingInstructions ? (
-                                <ul>
-                                    {exercises[index].instructions.map(instruction => {
-                                        return <li key={instruction}>{instruction}</li>
-                                    })}
-                                </ul>
+                                <Instructions instructions={exercises[index].instructions} />
                             ): null}
                             <button onClick={incrementExercise}>Next</button>
                             {exercises[index].instructions.length ? <button onClick={toggleInstructions}>Instructions</button> : null}

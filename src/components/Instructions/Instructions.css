@@ -1,0 +1,9 @@
+.exercise-instructions-container {
+    margin: 20px 0;
+}
+.exercise-instructions-list {
+    text-align: left;
+}
+.exercise-instructions-listItem:not(:last-child) {
+    margin-bottom: 5px;
+}
