@@ -50,13 +50,14 @@ const WorkoutActiveView = () => {
                     <DetailViewLayoutItem>
                         <h4>{exercises[index].name}</h4>
                         <div>
+                            <Timer key={exercises[index]._id} duration={exercises[index].timer} handleTimerComplete={incrementExercise}/>
                             {showingInstructions ? (
                                 <ul>
                                     {exercises[index].instructions.map(instruction => {
                                         return <li key={instruction}>{instruction}</li>
                                     })}
                                 </ul>
-                            ): <Timer key={exercises[index]._id} duration={exercises[index].timer} handleTimerComplete={incrementExercise}/>}
+                            ): null}
                             <button onClick={incrementExercise}>Next</button>
                             {exercises[index].instructions.length ? <button onClick={toggleInstructions}>Instructions</button> : null}
                             

@@ -39,10 +39,13 @@ const Timer = ({duration, handleTimerComplete}) => {
     }, [timerCount]);
 
     return (
-        <div>
-            <h1>{timerCount}</h1>
-            <SecondaryButton text={isTimerStarted ? "Pause" : "Start"} clickFunc={() => setIsTimerStarted(!isTimerStarted)}/>
-            {/* <button onClick={() => setIsTimerStarted(!isTimerStarted)}>{isTimerStarted ? "Pause" : "Start"}</button> */}
+        <div style={{display: "flex", justifyContent: "end", width: "100%", alignItems: "center"}}>
+            <div style={{width: "100%"}}>
+                <h1>{timerCount}</h1>
+            </div>
+            <div style={{position: "absolute"}}>
+                <SecondaryButton text={isTimerStarted ? "Pause" : "Start"} clickFunc={() => setIsTimerStarted(!isTimerStarted)}/>
+            </div>
         </div>
     )
 };
