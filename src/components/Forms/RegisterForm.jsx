@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react"
 
 const RegisterForm = () => {
@@ -9,11 +10,33 @@ const RegisterForm = () => {
 
     const handleUpdate = (e) => {
         console.log(e);
+        const targetField = e.target.name;
+        setFormData(() => {
+            const updatedFormData = {...formData};
+            updatedFormData[targetField] = e.target.value;
+            return updatedFormData;
+        });
     };
 
-    const handleRegister = (e) => {
+    const handleRegister = async (e) => {
         e.preventDefault();
-        console.log("attempting to register user...");
+        
+        if (!!formData.username && !!formData.email && !!formData.password) {
+            console.log("attempting to register user...");
+            const newUser = {
+                username: formData.username,
+                password: formData.password
+            }
+            axios.post("http://localhost:8080/exerciseApp/api/user/register", newUser)
+                .then(response => {
+                    console.log(response);
+                })
+                .catch(e => {
+                    console.log("error attempting to register user = ", e);
+                });
+        } else {
+            console.log("please enter a valid username, email, password");
+        }
     }
 
     return (
