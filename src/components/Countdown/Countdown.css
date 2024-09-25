@@ -1,0 +1,11 @@
+.countdown-container {
+    background: orange;
+    height: 100vh;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.countdown-container h1 {
+    font-size: 150px;
+}

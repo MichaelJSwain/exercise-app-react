@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import "./Countdown.css";
 
 let countdownInterval;
 
@@ -28,7 +29,7 @@ const Countdown = ({num, handleCountdownFinish}) => {
     }, [count]);
 
     return (
-        <div>
+        <div className="countdown-container">
             <h1>{count}</h1>
         </div>
     )
