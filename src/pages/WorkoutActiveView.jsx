@@ -6,12 +6,14 @@ import WorkoutCompletedView from "./WorkoutCompletedView";
 import Timer from "../components/Timer";
 import Instructions from "../components/Instructions/Instructions";
 import PrimaryButton from "../components/Buttons/PrimaryButton/PrimaryButton";
+import Countdown from "../components/Countdown/Countdown";
 
 const WorkoutActiveView = () => {
     const [exercises, setExercises] = useState([]);
     const [index, setIndex] = useState(0);
     const [showingInstructions, setShowingInstructions] = useState(false);
     const [isCompleted, setIsCompleted] = useState(false);
+    const [isShowingCountdown, setIsShowingCountdown] = useState(true);
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -39,10 +41,13 @@ const WorkoutActiveView = () => {
 
     return (
         <div>
-            {isCompleted ? (
+            {isShowingCountdown && 
+                <Countdown num="8" handleCountdownFinish={() => {setIsShowingCountdown(false)}} />
+            }
+            {isCompleted &&
                 <WorkoutCompletedView clickFunc={endWorkout}/>
-            ) : null}
-            {exercises.length && !isCompleted ? (
+            }
+            {(exercises.length && !isCompleted && !isShowingCountdown) ? (
                 <DetailViewLayout>
                     <DetailViewLayoutItem>
                         <div style={{width: "100%"}}>
