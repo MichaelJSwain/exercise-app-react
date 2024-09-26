@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./FavouriteIcon.css";
 
-const FavouriteIcon = ({id}) => {
+const FavouriteIcon = ({workoutId}) => {
     const [isFavourited, setIsFavourited] = useState(false);
 
     const handleFavourite = () => {
@@ -9,9 +9,9 @@ const FavouriteIcon = ({id}) => {
 
          // grab the current user from the user in context + push / remove the id from the favourites array in the user context.
         if (isFavourited) {
-            console.log("removing from favourites");
+            console.log("removing from favourites", workoutId);
         } else {
-            console.log("adding to favourites");
+            console.log("adding to favourites", workoutId);
         }
         setIsFavourited(!isFavourited);
     }

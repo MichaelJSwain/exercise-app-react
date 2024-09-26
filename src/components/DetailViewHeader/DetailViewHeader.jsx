@@ -7,7 +7,7 @@ const DetailViewHeader = ({title, description, workoutId}) => {
         <div className="DetailViewHeader">
             <div className="DetailViewHeader-title-container">
                 <PageTitle title={title} />
-                <FavouriteIcon id={workoutId}/>
+                <FavouriteIcon workoutId={workoutId}/>
             </div>
             {description && <p>{description}</p>}
         </div>

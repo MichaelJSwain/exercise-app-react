@@ -1,5 +1,6 @@
 import { createContext, useState } from 'react';
 import axios from 'axios';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export const AuthContext = createContext();
 
@@ -20,6 +21,9 @@ const AuthContextProvider = ({children}) => {
                 console.log(response);
                 if (response.status === 200) {
                     setUser(user);
+                    const navigate = useNavigate();
+                    const {pathname} = useLocation();
+                    navigate(pathname);
                 }
             })
             .catch(e => {

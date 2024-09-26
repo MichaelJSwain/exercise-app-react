@@ -42,7 +42,7 @@ const WorkoutActiveView = () => {
     return (
         <div>
             {isShowingCountdown && 
-                <Countdown num="8" handleCountdownFinish={() => {setIsShowingCountdown(false)}} />
+                <Countdown num="3" handleCountdownFinish={() => {setIsShowingCountdown(false)}} />
             }
             {isCompleted &&
                 <WorkoutCompletedView clickFunc={endWorkout}/>
