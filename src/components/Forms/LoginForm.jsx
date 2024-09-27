@@ -7,6 +7,7 @@ import FormLabel from "./FormLabel/FormLabel";
 import FormInputContainer from "./FormInputContainer/FormInputContainer";
 import FormButton from "./FormButton/FormButton";
 import FormFieldError from "../Error/FormFieldError";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
     const [formData, setFormData] = useState({
@@ -22,8 +23,13 @@ const LoginForm = () => {
         }
     });
     const [isFormValid, setIsFormValid] = useState(false);
+    const [isServerError, setIsServerError] = useState(false);
+    const [validatedUser, setValidatedUser] = useState(false);
+
+    const navigate = useNavigate();
 
     const validateForm = () => {
+        console.log("validating form...")
         let result = {...formData};
         let validForm = true;
         if (!formData.username.value) {
@@ -59,13 +65,32 @@ const LoginForm = () => {
     }
 
     useEffect(() => {
-        if (isFormValid) {
-            login(formData.username.value, formData.password.value);
+        const loginUser = async () => {
+            if (isFormValid) {
+                const result = await login(formData.username.value, formData.password.value);
+                console.log("result = ", result);
+                if (result === "400") {
+                    setIsServerError(true);
+                    setIsFormValid(false);
+                } else {
+                    setIsServerError(false);
+                    setValidatedUser(true);
+                }
+            }
         }
+        loginUser()
     }, [isFormValid]);
+
+    useEffect(() => {
+        if (validatedUser) {
+            console.log("")
+            navigate("/workouts");
+        }
+    }, [validatedUser]);
 
     return (
         <div style={{maxWidth: "500px", margin: "0 auto"}}>
+            {isServerError && <p>Invalid username or password</p>}
             <form onSubmit={handleLogin}>
                 <FormInputContainer>
                     <FormLabel label="Username" />

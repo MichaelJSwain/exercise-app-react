@@ -7,25 +7,26 @@ export const AuthContext = createContext();
 const AuthContextProvider = ({children}) => {
     const [user, setUser] = useState(null);
 
-    const login = (username, password) => {
+    const login = async (username, password) => {
         console.log("logging in via auth context");
-
-        
         const user = {
             username,
             password
         }
 
-        axios.post("http://localhost:8080/exerciseApp/api/user/login", user)
+        const result = await axios.post("http://localhost:8080/exerciseApp/api/user/login", user)
             .then(response => {
                 console.log(response);
                 if (response.status === 200) {
                     setUser(user);
+                    return "200";
                 }
             })
             .catch(e => {
+                return "400";
                 console.log("error attempting to login = ", e);
             })
+            return result;
       };
     
       const logout = () => {
