@@ -1,6 +1,10 @@
 import axios from "axios";
 import { AuthContext } from "../Context/AuthContext";
 import { useContext, useState } from "react"
+import FormInputContainer from "./FormInputContainer";
+import FormLabel from "./FormLabel";
+import FormInput from "./FormInput";
+import FormButton from "./FormButton";
 
 
 const RegisterForm = () => {
@@ -34,9 +38,23 @@ const RegisterForm = () => {
     }
 
     return (
-        <div>
+        <div style={{maxWidth: "500px", margin: "0 auto"}}>
             <form onSubmit={handleRegister}>
-                <div>
+            
+                <FormInputContainer>
+                        <FormLabel label="Username" />
+                        <FormInput id="username" name="username" type="text" value={formData.username} handleUpdate={handleUpdate}/>
+                    </FormInputContainer>
+                    <FormInputContainer>
+                        <FormLabel label="Password" />
+                        <FormInput id="password" name="password" type="password" value={formData.password} handleUpdate={handleUpdate}/>
+                    </FormInputContainer>
+                    <FormInputContainer>
+                        <FormLabel label="Email" />
+                        <FormInput id="email" name="email" type="email" value={formData.email} handleUpdate={handleUpdate}/>
+                    </FormInputContainer>
+                    <FormButton text="Register"/>
+                {/* <div>
                     <label htmlFor="username">Username:</label>
                     <input id="username" name="username" value={formData.username} onChange={handleUpdate}/>
                 </div>
@@ -48,7 +66,7 @@ const RegisterForm = () => {
                     <label htmlFor="password">Password:</label>
                     <input id="password" name="password" value={formData.password} onChange={handleUpdate}/>
                 </div>
-                <button>Register</button>
+                <button>Register</button> */}
             </form>
         </div>
     )
