@@ -1,0 +1,5 @@
+.formFieldError {
+    background: pink;
+    color: red;
+    padding: 10px;
+}

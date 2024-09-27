@@ -1,56 +1,98 @@
 import axios from "axios";
 import { AuthContext } from "../Context/AuthContext";
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import FormInputContainer from "./FormInputContainer/FormInputContainer";
 import FormLabel from "./FormLabel/FormLabel";
 import FormInput from "./FormInput/FormInput";
 import FormButton from "./FormButton/FormButton";
+import FormFieldError from "../Error/FormFieldError";
 
 
 const RegisterForm = () => {
     const [formData, setFormData] = useState({
-        username: "",
-        email: "",
-        password: ""
+        username: {
+            value: "",
+            isError: false,
+            errorMessage: "Please enter a valid username"
+        },
+        email: {
+            value: "",
+            isError: false,
+            errorMessage: "Please enter a valid email"
+        },
+        password: {
+            value: "",
+            isError: false,
+            errorMessage: "Please enter a valid password"
+        }
     });
+    const [isFormValid, setIsFormValid] = useState(false);
 
     const {register} = useContext(AuthContext);
+
+    const validateForm = () => {
+        let result = {...formData};
+        let validForm = true;
+        if (!formData.username.value) {
+            result.username.isError = true;
+            validForm = false;
+        } else {
+            result.username.isError = false;
+        }
+        if (!formData.password.value) {
+            result.password.isError = true;
+            validForm = false;
+        } else {
+            result.password.isError = false;
+        }
+        if (!formData.email.value) {
+            result.email.isError = true;
+            validForm = false;
+        } else {
+            result.email.isError = false;
+        }
+        setFormData(result);
+        setIsFormValid(validForm);
+    };
 
     const handleUpdate = (e) => {
         console.log(e);
         const targetField = e.target.name;
         setFormData(() => {
             const updatedFormData = {...formData};
-            updatedFormData[targetField] = e.target.value;
+            updatedFormData[targetField].value = e.target.value;
             return updatedFormData;
         });
     };
 
     const handleRegister = async (e) => {
         e.preventDefault();
-        
-        if (!!formData.username && !!formData.email && !!formData.password) {
-            console.log("attempting to register user...");
-            register(formData.username, formData.password)
-        } else {
-            console.log("please enter a valid username, email, password");
-        }
+        validateForm();
     }
+
+    useEffect(() => {
+        if (isFormValid) {
+            register(formData.username.value, formData.password.value);
+        }
+    }, [isFormValid]);
 
     return (
         <div style={{maxWidth: "500px", margin: "0 auto"}}>
             <form onSubmit={handleRegister}>
                 <FormInputContainer>
                         <FormLabel label="Username" />
-                        <FormInput id="username" name="username" type="text" value={formData.username} handleUpdate={handleUpdate}/>
+                        <FormInput id="username" name="username" type="text" value={formData.username.value} handleUpdate={handleUpdate}/>
+                        {formData.username.isError && <FormFieldError text={formData.username.errorMessage}/>}
                     </FormInputContainer>
                     <FormInputContainer>
                         <FormLabel label="Password" />
-                        <FormInput id="password" name="password" type="password" value={formData.password} handleUpdate={handleUpdate}/>
+                        <FormInput id="password" name="password" type="password" value={formData.password.value} handleUpdate={handleUpdate}/>
+                        {formData.password.isError && <FormFieldError text={formData.password.errorMessage}/>}
                     </FormInputContainer>
                     <FormInputContainer>
                         <FormLabel label="Email" />
-                        <FormInput id="email" name="email" type="email" value={formData.email} handleUpdate={handleUpdate}/>
+                        <FormInput id="email" name="email" type="email" value={formData.email.value} handleUpdate={handleUpdate}/>
+                        {formData.email.isError && <FormFieldError text={formData.email.errorMessage}/>}
                     </FormInputContainer>
                     <FormButton text="Register"/>
             </form>
