@@ -17,8 +17,8 @@ function App() {
         <Header>
         <Routes>
           <Route path="/workouts" element={<WorkoutListView />}></Route>
-          <Route path="/workouts/:id" element={user ? <WorkoutDetailView /> : <LoginView/>}></Route>
-          <Route path="/workouts/:id/active" element={user ? <WorkoutActiveView /> : <LoginView />}></Route>
+          <Route path="/workouts/:id" element={<WorkoutDetailView />}></Route>
+          <Route path="/workouts/:id/active" element={<WorkoutActiveView />}></Route>
           <Route path="/account/login" element={<LoginView />}></Route>
           <Route path="/account/register" element={<RegisterView />}></Route>
         </Routes>
