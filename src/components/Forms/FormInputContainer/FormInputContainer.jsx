@@ -1,6 +1,8 @@
+import "./FormInputContainer.css";
+
 const FormInputContainer = ({children}) => {
     return (
-        <div style={{display: "flex", flexDirection: "column", textAlign: "left", margin: "20px 0"}}>
+        <div className="formInputContainer">
             {children}
         </div>
     )

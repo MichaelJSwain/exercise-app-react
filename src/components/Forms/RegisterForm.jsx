@@ -1,10 +1,10 @@
 import axios from "axios";
 import { AuthContext } from "../Context/AuthContext";
 import { useContext, useState } from "react"
-import FormInputContainer from "./FormInputContainer";
-import FormLabel from "./FormLabel";
-import FormInput from "./FormInput";
-import FormButton from "./FormButton";
+import FormInputContainer from "./FormInputContainer/FormInputContainer";
+import FormLabel from "./FormLabel/FormLabel";
+import FormInput from "./FormInput/FormInput";
+import FormButton from "./FormButton/FormButton";
 
 
 const RegisterForm = () => {
@@ -40,7 +40,6 @@ const RegisterForm = () => {
     return (
         <div style={{maxWidth: "500px", margin: "0 auto"}}>
             <form onSubmit={handleRegister}>
-            
                 <FormInputContainer>
                         <FormLabel label="Username" />
                         <FormInput id="username" name="username" type="text" value={formData.username} handleUpdate={handleUpdate}/>
@@ -54,19 +53,6 @@ const RegisterForm = () => {
                         <FormInput id="email" name="email" type="email" value={formData.email} handleUpdate={handleUpdate}/>
                     </FormInputContainer>
                     <FormButton text="Register"/>
-                {/* <div>
-                    <label htmlFor="username">Username:</label>
-                    <input id="username" name="username" value={formData.username} onChange={handleUpdate}/>
-                </div>
-                <div>
-                    <label htmlFor="email">Email:</label>
-                    <input id="email" name="email" value={formData.email} onChange={handleUpdate}/>
-                </div>
-                <div>
-                    <label htmlFor="password">Password:</label>
-                    <input id="password" name="password" value={formData.password} onChange={handleUpdate}/>
-                </div>
-                <button>Register</button> */}
             </form>
         </div>
     )

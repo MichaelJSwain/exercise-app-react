@@ -2,10 +2,10 @@ import { useContext, useState } from "react"
 import axios from "axios";
 import { AuthContext } from "../Context/AuthContext";
 import PrimaryButton from "../Buttons/PrimaryButton/PrimaryButton";
-import FormInput from "./FormInput";
-import FormLabel from "./FormLabel";
-import FormInputContainer from "./FormInputContainer";
-import FormButton from "./FormButton";
+import FormInput from "./FormInput/FormInput";
+import FormLabel from "./FormLabel/FormLabel";
+import FormInputContainer from "./FormInputContainer/FormInputContainer";
+import FormButton from "./FormButton/FormButton";
 
 const LoginForm = () => {
     const [formData, setFormData] = useState({

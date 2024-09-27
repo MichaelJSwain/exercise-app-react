@@ -1,0 +1,6 @@
+.formInputContainer {
+    display: flex;
+    flex-direction: column; 
+    text-align: left; 
+    margin: 20px 0;
+}
