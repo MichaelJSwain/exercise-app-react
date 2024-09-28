@@ -8,6 +8,7 @@ import FormInputContainer from "./FormInputContainer/FormInputContainer";
 import FormButton from "./FormButton/FormButton";
 import FormFieldError from "../Error/FormFieldError";
 import { useNavigate } from "react-router-dom";
+import { AuthDrawerContext } from "../Context/AuthDrawerContext";
 
 const LoginForm = () => {
     const [formData, setFormData] = useState({
@@ -25,6 +26,7 @@ const LoginForm = () => {
     const [isFormValid, setIsFormValid] = useState(false);
     const [isServerError, setIsServerError] = useState(false);
     const [validatedUser, setValidatedUser] = useState(false);
+    const {hideAuthDrawer} = useContext(AuthDrawerContext);
 
     const navigate = useNavigate();
 
@@ -74,22 +76,22 @@ const LoginForm = () => {
                     setIsFormValid(false);
                 } else {
                     setIsServerError(false);
-                    setValidatedUser(true);
+                    hideAuthDrawer();
                 }
             }
         }
         loginUser()
     }, [isFormValid]);
 
-    useEffect(() => {
-        if (validatedUser) {
-            console.log("")
-            navigate("/workouts");
-        }
-    }, [validatedUser]);
+    // useEffect(() => {
+    //     if (validatedUser) {
+    //         console.log("")
+    //         navigate("/workouts");
+    //     }
+    // }, [validatedUser]);
 
     return (
-        <div style={{maxWidth: "500px", margin: "0 auto"}}>
+        <div>
             {isServerError && <p>Invalid username or password</p>}
             <form onSubmit={handleLogin}>
                 <FormInputContainer>

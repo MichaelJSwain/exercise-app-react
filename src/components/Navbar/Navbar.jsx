@@ -2,9 +2,11 @@ import { Link } from "react-router-dom";
 import "./Navbar.css";
 import { AuthContext } from "../Context/AuthContext";
 import { useContext } from "react";
+import {AuthDrawerContext} from "../Context/AuthDrawerContext";
 
 const Navbar = () => {
     const {user, logout} = useContext(AuthContext);
+    const {showAuthDrawer} = useContext(AuthDrawerContext);
 
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -24,18 +26,13 @@ const Navbar = () => {
                 {user ? (
                     <>
                         <li className="nav-item">
-                            <Link className="navbar-link" aria-current="page" to="/account/login">Account</Link>
-                        </li>
-                        <li className="nav-item" onClick={logout}>
-                            Logout
+                            <Link className="navbar-link" aria-current="page" to="/account">Account</Link>
                         </li>
                     </>
                 ) : <>
                         <li className="nav-item">
-                            <Link className="navbar-link" aria-current="page" to="/account/login">Login</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="navbar-link" aria-current="page" to="/account/register">Register</Link>
+                            <span onClick={() => {showAuthDrawer()}}>Login</span>
+                            {/* <Link className="navbar-link" aria-current="page" to="/account/login">Login</Link> */}
                         </li>
                     </>
             }

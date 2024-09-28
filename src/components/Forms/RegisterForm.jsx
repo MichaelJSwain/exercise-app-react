@@ -6,6 +6,7 @@ import FormLabel from "./FormLabel/FormLabel";
 import FormInput from "./FormInput/FormInput";
 import FormButton from "./FormButton/FormButton";
 import FormFieldError from "../Error/FormFieldError";
+import { AuthDrawerContext } from "../Context/AuthDrawerContext";
 
 
 const RegisterForm = () => {
@@ -27,6 +28,8 @@ const RegisterForm = () => {
         }
     });
     const [isFormValid, setIsFormValid] = useState(false);
+    const [isServerError, setIsServerError] = useState(false);
+    const {hideAuthDrawer} = useContext(AuthDrawerContext);
 
     const {register} = useContext(AuthContext);
 
@@ -74,10 +77,24 @@ const RegisterForm = () => {
         if (isFormValid) {
             register(formData.username.value, formData.password.value);
         }
+
+        const registerUser = async () => {
+            if (isFormValid) {
+                const result = await register(formData.username.value, formData.password.value);
+                console.log("result = ", result);
+                if (result === "400") {
+                    setIsServerError(true);
+                } else {
+                    hideAuthDrawer();
+                }
+            }
+        }
+        registerUser();
     }, [isFormValid]);
 
     return (
         <div style={{maxWidth: "500px", margin: "0 auto"}}>
+            {isServerError && <p>Sorry, unable to register. Please try again later.</p>}
             <form onSubmit={handleRegister}>
                 <FormInputContainer>
                         <FormLabel label="Username" />

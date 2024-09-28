@@ -33,21 +33,24 @@ const AuthContextProvider = ({children}) => {
         setUser(null);
       };
     
-      const register = (username, password) => {
+      const register = async (username, password) => {
         const newUser = {
             username,
             password
         }
-        axios.post("http://localhost:8080/exerciseApp/api/user/register", newUser)
+        const result = await axios.post("http://localhost:8080/exerciseApp/api/user/register", newUser)
             .then(response => {
                 console.log(response);
                 if (response.status === 200) {
                     setUser(newUser);
+                    return "200";
                 }
             })
             .catch(e => {
+                return "400";
                 console.log("error attempting to register user = ", e);
             });
+            return result;
       };
 
     return (

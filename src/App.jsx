@@ -8,6 +8,7 @@ import LoginView from './pages/LoginView';
 import RegisterView from './pages/RegisterView';
 import AuthContextProvider, { AuthContext } from './components/Context/AuthContext';
 import { useContext } from 'react';
+import AccountView from './pages/AccountView';
 
 function App() {
   const {user} = useContext(AuthContext);
@@ -19,8 +20,7 @@ function App() {
           <Route path="/workouts" element={<WorkoutListView />}></Route>
           <Route path="/workouts/:id" element={<WorkoutDetailView />}></Route>
           <Route path="/workouts/:id/active" element={<WorkoutActiveView />}></Route>
-          <Route path="/account/login" element={<LoginView />}></Route>
-          <Route path="/account/register" element={<RegisterView />}></Route>
+          <Route path="/account" element={<AccountView />}></Route>
         </Routes>
         </Header>
       </BrowserRouter>
