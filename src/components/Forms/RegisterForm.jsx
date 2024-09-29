@@ -7,6 +7,7 @@ import FormInput from "./FormInput/FormInput";
 import FormButton from "./FormButton/FormButton";
 import FormFieldError from "../Error/FormFieldError";
 import { AuthDrawerContext } from "../Context/AuthDrawerContext";
+import PrimaryButton from "../Buttons/PrimaryButton/PrimaryButton";
 
 
 const RegisterForm = () => {
@@ -111,7 +112,7 @@ const RegisterForm = () => {
                         <FormInput id="email" name="email" type="email" value={formData.email.value} handleUpdate={handleUpdate}/>
                         {formData.email.isError && <FormFieldError text={formData.email.errorMessage}/>}
                     </FormInputContainer>
-                    <FormButton text="Register"/>
+                    <PrimaryButton text="Register" clickFunc={() => {}}/>
             </form>
         </div>
     )

@@ -105,7 +105,7 @@ const LoginForm = () => {
                     <FormInput id="password" name="password" type="password" value={formData.password.value} handleUpdate={handleUpdate}/>
                     {formData.password.isError && <FormFieldError text={formData.password.errorMessage}/>}
                 </FormInputContainer>
-                <FormButton text="Login"/>
+                <PrimaryButton text="Login" clickFunc={() => {}}/>
             </form>
         </div>
     )
