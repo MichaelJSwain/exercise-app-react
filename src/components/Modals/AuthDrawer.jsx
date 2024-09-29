@@ -2,8 +2,9 @@ import { useContext } from "react";
 import LoginForm from "../Forms/LoginForm";
 import { AuthDrawerContext } from "../Context/AuthDrawerContext";
 import RegisterForm from "../Forms/RegisterForm";
-import SecondaryButton from "../Buttons/PrimaryButton/SecondaryButton";
 import CloseButton from "../Buttons/PrimaryButton/CloseButton";
+import Button from "../Buttons/PrimaryButton/Button";
+
 
 const AuthDrawer = () => {
     const {hideAuthDrawer, authDrawerDefaultForm, setForm} = useContext(AuthDrawerContext);
@@ -20,7 +21,7 @@ const AuthDrawer = () => {
                             <LoginForm/>
                             <hr className="divider"/>
                             <div>
-                                <SecondaryButton text="Register" clickFunc={() => {setForm(1)}}/>
+                                <Button text="Register" clickFunc={() => {setForm(1)}} variant="secondary"/>
                             </div>
                         </>
                     ) : (
@@ -28,7 +29,7 @@ const AuthDrawer = () => {
                             <RegisterForm />
                             <hr className="divider"/>
                             <div>
-                                <SecondaryButton text="Login" clickFunc={() => {setForm(0)}}/>
+                                <Button text="Login" clickFunc={() => {setForm(0)}} variant="secondary"/>
                             </div>
                         </>
                     )}

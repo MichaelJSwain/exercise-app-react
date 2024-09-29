@@ -1,14 +1,12 @@
 import { useContext, useEffect, useState } from "react"
 import axios from "axios";
 import { AuthContext } from "../Context/AuthContext";
-import PrimaryButton from "../Buttons/PrimaryButton/PrimaryButton";
 import FormInput from "./FormInput/FormInput";
 import FormLabel from "./FormLabel/FormLabel";
 import FormInputContainer from "./FormInputContainer/FormInputContainer";
-import FormButton from "./FormButton/FormButton";
 import FormFieldError from "../Error/FormFieldError";
-import { useNavigate } from "react-router-dom";
 import { AuthDrawerContext } from "../Context/AuthDrawerContext";
+import Button from "../Buttons/PrimaryButton/Button";
 
 const LoginForm = () => {
     const [formData, setFormData] = useState({
@@ -27,8 +25,6 @@ const LoginForm = () => {
     const [isServerError, setIsServerError] = useState(false);
     const [validatedUser, setValidatedUser] = useState(false);
     const {hideAuthDrawer} = useContext(AuthDrawerContext);
-
-    const navigate = useNavigate();
 
     const validateForm = () => {
         console.log("validating form...")
@@ -83,13 +79,6 @@ const LoginForm = () => {
         loginUser()
     }, [isFormValid]);
 
-    // useEffect(() => {
-    //     if (validatedUser) {
-    //         console.log("")
-    //         navigate("/workouts");
-    //     }
-    // }, [validatedUser]);
-
     return (
         <div>
             {isServerError && <p>Invalid username or password</p>}
@@ -105,7 +94,7 @@ const LoginForm = () => {
                     <FormInput id="password" name="password" type="password" value={formData.password.value} handleUpdate={handleUpdate}/>
                     {formData.password.isError && <FormFieldError text={formData.password.errorMessage}/>}
                 </FormInputContainer>
-                <PrimaryButton text="Login" clickFunc={() => {}}/>
+                    <Button text="Login" clickFunc={() => {}} variant="primary"/>
             </form>
         </div>
     )

@@ -9,7 +9,7 @@ import HighlightList from "../components/Highlights/List/HighlightList";
 import PageHeader from "../components/PageHeader/PageHeader";
 import FavouriteIcon from "../components/FavouriteIcon/FavouriteIcon";
 import DetailViewHeader from "../components/DetailViewHeader/DetailViewHeader";
-import PrimaryButton from "../components/Buttons/PrimaryButton/PrimaryButton";
+import Button from "../components/Buttons/PrimaryButton/Button";
 
 const WorkoutDetailView = () => {
     const [workout, setWorkout] = useState(null);
@@ -52,7 +52,7 @@ const WorkoutDetailView = () => {
                                 )
                             })}
                         </div>
-                        <PrimaryButton text="Begin" clickFunc={handleButtonClick} />
+                        <Button text="Begin" clickFunc={handleButtonClick} variant="primary" />
                     </div>
                 )
                 }

@@ -4,11 +4,9 @@ import { useContext, useEffect, useState } from "react"
 import FormInputContainer from "./FormInputContainer/FormInputContainer";
 import FormLabel from "./FormLabel/FormLabel";
 import FormInput from "./FormInput/FormInput";
-import FormButton from "./FormButton/FormButton";
 import FormFieldError from "../Error/FormFieldError";
 import { AuthDrawerContext } from "../Context/AuthDrawerContext";
-import PrimaryButton from "../Buttons/PrimaryButton/PrimaryButton";
-
+import Button from "../Buttons/PrimaryButton/Button";
 
 const RegisterForm = () => {
     const [formData, setFormData] = useState({
@@ -112,7 +110,7 @@ const RegisterForm = () => {
                         <FormInput id="email" name="email" type="email" value={formData.email.value} handleUpdate={handleUpdate}/>
                         {formData.email.isError && <FormFieldError text={formData.email.errorMessage}/>}
                     </FormInputContainer>
-                    <PrimaryButton text="Register" clickFunc={() => {}}/>
+                    <Button text="Login" clickFunc={() => {}} variant="primary"/>
             </form>
         </div>
     )

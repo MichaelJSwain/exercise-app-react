@@ -5,7 +5,6 @@ import DetailViewLayoutItem from "../components/DetailViewLayoutItem/DetailViewL
 import WorkoutCompletedView from "./WorkoutCompletedView";
 import Timer from "../components/Timer";
 import Instructions from "../components/Instructions/Instructions";
-import PrimaryButton from "../components/Buttons/PrimaryButton/PrimaryButton";
 import Countdown from "../components/Countdown/Countdown";
 
 const WorkoutActiveView = () => {

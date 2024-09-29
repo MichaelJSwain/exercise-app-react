@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import SecondaryButton from "./Buttons/PrimaryButton/SecondaryButton";
+import Button from "./Buttons/PrimaryButton/Button";
 
 let timerId = null;
 
@@ -44,7 +44,8 @@ const Timer = ({duration, handleTimerComplete}) => {
                 <h1>{timerCount}</h1>
             </div>
             <div style={{position: "absolute"}}>
-                <SecondaryButton text={isTimerStarted ? "Pause" : "Start"} clickFunc={() => setIsTimerStarted(!isTimerStarted)}/>
+                <Button text={isTimerStarted ? "Pause" : "Start"} clickFunc={() => setIsTimerStarted(!isTimerStarted)} variant="primary"/>
+                
             </div>
         </div>
     )
