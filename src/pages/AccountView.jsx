@@ -6,7 +6,7 @@ const AccountView = () => {
 
     return (
         <div>
-            <h1>My Account {user ? ` - ${user.username}` : null}</h1>
+            <h1>My Account {user ? ` - ${user.user.username}` : null}</h1>
 
             <button onClick={() => {logout()}}>Logout</button>
         </div>

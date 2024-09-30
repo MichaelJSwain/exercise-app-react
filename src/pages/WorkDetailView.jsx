@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import LoadingView from "../components/LoadingView";
 import DetailViewLayout from "../components/DetailViewLayout/DetailViewLayout";
@@ -10,10 +10,14 @@ import PageHeader from "../components/PageHeader/PageHeader";
 import FavouriteIcon from "../components/FavouriteIcon/FavouriteIcon";
 import DetailViewHeader from "../components/DetailViewHeader/DetailViewHeader";
 import Button from "../components/Buttons/PrimaryButton/Button";
+import { AuthContext } from "../components/Context/AuthContext";
+import { AuthDrawerContext } from "../components/Context/AuthDrawerContext";
 
 const WorkoutDetailView = () => {
     const [workout, setWorkout] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
+    const {user} = useContext(AuthContext);
+    const {showAuthDrawer} = useContext(AuthDrawerContext);
     let location = useLocation();
     const navigate = useNavigate();
 
@@ -24,7 +28,11 @@ const WorkoutDetailView = () => {
 
     const handleButtonClick = () => {
         console.log("Button clickedddd!");
-        navigate(`/workouts/${workout._id}/active`, {state: {workout}});
+        if (user) {
+            navigate(`/workouts/${workout._id}/active`, {state: {workout}});
+        } else {
+            showAuthDrawer();
+        }
     }
 
     return (

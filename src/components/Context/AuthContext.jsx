@@ -18,7 +18,7 @@ const AuthContextProvider = ({children}) => {
             .then(response => {
                 console.log(response);
                 if (response.status === 200) {
-                    setUser(user);
+                    setUser(response.data);
                     return "200";
                 }
             })
