@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./ListItem.css";
 
 const ListItem = ({item}) => {
@@ -11,7 +11,6 @@ const ListItem = ({item}) => {
 
     return (
         <div className="listItem" onClick={() => {handleNavigate();}}>
-         {/* <Link className="listItem" to={`/workouts/${item._id}`} > */}
             <div className="listItem-content">
                 <div className="listItem-image-container">
                     <img className="list-item-image" src={item.image ? item.image : "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png"} />
@@ -26,7 +25,6 @@ const ListItem = ({item}) => {
                     </div>
                 </div>
             </div>
-         {/* </Link> */}
         </div>
     )
 };
