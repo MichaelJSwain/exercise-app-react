@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -54,7 +54,7 @@ const AuthContextProvider = ({children}) => {
       };
 
     return (
-        <AuthContext.Provider value={{user, login, logout, register}}>
+        <AuthContext.Provider value={{user, setUser, login, logout, register}}>
             {children}
         </AuthContext.Provider>
     )

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import DetailViewLayout from "../components/DetailViewLayout/DetailViewLayout";
 import DetailViewLayoutItem from "../components/DetailViewLayoutItem/DetailViewLayoutItem";
@@ -6,6 +6,8 @@ import WorkoutCompletedView from "./WorkoutCompletedView";
 import Timer from "../components/Timer";
 import Instructions from "../components/Instructions/Instructions";
 import Countdown from "../components/Countdown/Countdown";
+import { AuthContext } from "../components/Context/AuthContext";
+import axios from "axios";
 
 const WorkoutActiveView = () => {
     const [exercises, setExercises] = useState([]);
@@ -13,7 +15,7 @@ const WorkoutActiveView = () => {
     const [showingInstructions, setShowingInstructions] = useState(false);
     const [isCompleted, setIsCompleted] = useState(false);
     const [isShowingCountdown, setIsShowingCountdown] = useState(true);
-
+    const {user, setUser} = useContext(AuthContext);
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -21,6 +23,26 @@ const WorkoutActiveView = () => {
         console.log("location = ", location);
         setExercises(location.state.workout.trainingSet);
     }, []);
+
+    useEffect(() => {
+        const postCompletedWorkout = async () => {
+            console.log("posting completed workout!");
+            const response = await axios.post("http://localhost:8080/exerciseApp/api/workouts/completed", {userId: user.user._id, workoutId: location.state.workout._id})
+            .then(response => {
+                console.log(response);
+                const updatedUser = {...user.user};
+                updatedUser.completed.push(location.state.workout._id);
+    
+                setUser(updatedUser);
+            })
+            .catch(e => {
+                console.log(e);
+            });
+        }
+        if (isCompleted) {
+            postCompletedWorkout();
+        }
+    }, [isCompleted]);
 
     const incrementExercise = () => {
         if (index === (exercises.length - 1)) {

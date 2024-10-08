@@ -3,28 +3,28 @@ import "./FavouriteIcon.css";
 import { AuthContext } from "../Context/AuthContext";
 import { AuthDrawerContext } from "../Context/AuthDrawerContext";
 
-const FavouriteIcon = ({workoutId}) => {
-    const [isFavourited, setIsFavourited] = useState(false);
-    const {user} = useContext(AuthContext);
-    const {showAuthDrawer} = useContext(AuthDrawerContext);
+const FavouriteIcon = ({isFavourited, handleFavourite}) => {
+    // const [isFavourited, setIsFavourited] = useState(false);
+    // const {user} = useContext(AuthContext);
+    // const {showAuthDrawer} = useContext(AuthDrawerContext);
 
-    const handleFavourite = () => {
-        if (user) {
-            console.log("handling favourite ", user);
+    // const handleFavourite = () => {
+    //     if (user) {
+    //         console.log("handling favourite ", user);
 
-            // grab the current user from the user in context + push / remove the id from the favourites array in the user context.
-           if (isFavourited) {
-               console.log("removing from favourites", workoutId);
-           } else {
-               console.log("adding to favourites", workoutId);
-           }
-           setIsFavourited(!isFavourited);
-        } else {
-            console.log("no user")
-            showAuthDrawer();
-        }
+    //         // grab the current user from the user in context + push / remove the id from the favourites array in the user context.
+    //        if (isFavourited) {
+    //            console.log("removing from favourites", workoutId);
+    //        } else {
+    //            console.log("adding to favourites", workoutId);
+    //        }
+    //        setIsFavourited(!isFavourited);
+    //     } else {
+    //         console.log("no user")
+    //         showAuthDrawer();
+    //     }
 
-    }
+    // }
 
     return (
         <div className={isFavourited ? "favouriteIcon selected" : "favouriteIcon"} onClick={handleFavourite}>
