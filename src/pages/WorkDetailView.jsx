@@ -37,9 +37,20 @@ const WorkoutDetailView = () => {
         console.log("favouritedddd");
     }, [isFavourited]);
 
-    const handleButtonClick = () => {
+    const handleButtonClick = async () => {
         console.log("Button clickedddd!");
         if (user) {
+            const result = await axios.post("http://localhost:8080/exerciseApp/api/workouts/current", {userId: user.user._id, workoutId: workout._id})
+            .then((response) => {
+                console.log(response);
+                const updatedUser = {...user};
+                updatedUser.user.current.push(workout._id);
+
+                setUser(updatedUser);
+            })
+            .catch(e => {
+                console.log("error = ", e);
+            })
             navigate(`/workouts/${workout._id}/active`, {state: {workout}});
         } else {
             showAuthDrawer();

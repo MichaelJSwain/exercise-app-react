@@ -30,8 +30,8 @@ const WorkoutActiveView = () => {
             const response = await axios.post("http://localhost:8080/exerciseApp/api/workouts/completed", {userId: user.user._id, workoutId: location.state.workout._id})
             .then(response => {
                 console.log(response);
-                const updatedUser = {...user.user};
-                updatedUser.completed.push(location.state.workout._id);
+                const updatedUser = {...user};
+                updatedUser.user.completed.push(location.state.workout._id);
     
                 setUser(updatedUser);
             })
